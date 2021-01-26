@@ -1,11 +1,14 @@
 const express = require('express');
-const { url } = require('inspector');
 const urlModel = require('../models/url-shortner');
 const router = express.Router()
+const healthCheck = require('./healthcheck.routes');
 
-router.get('/all', async (req, res) => {
+// HealthCheck
+router.get('/', healthCheck)
+
+router.get('/all', async (_req, res) => {
     try {
-        await urlModel.find({}, (err, urls) => {
+        await urlModel.find({}, (_err, urls) => {
             return res.status(200).json({ success: true, data: urls });
         });
     } catch (err) {
