@@ -7,11 +7,11 @@ const nanNumber = process.env.SLUG_NUM;
 // Generate slug
 router.post('/new', async (req, res) => {
     const { url } = req.body;
+    const newUrl = new urlModel({
+        slug: nanoid.nanoid(nanNumber),
+        url: url.toLowerCase()
+    });
     try {
-        const newUrl = new urlModel({
-            slug: nanoid.nanoid(nanNumber),
-            url: url.toLowerCase()
-        });
         await newUrl.save();
         return res.status(201).json({ success: true, data: newUrl.slug });
     } catch (err) {
