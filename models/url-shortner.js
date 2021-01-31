@@ -8,7 +8,7 @@ const urlSchema = mongoose.Schema({
         type: String,
         validate: {
             validator: (url) => {
-                return /^(https:|http:|ftp:|www\.)\S*/.test(url);
+                return '/^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|(www\\.)?){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?$/i'.test(url);
             },
             message: props => `${props.value} is not a valid url!`
         },
