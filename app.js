@@ -4,15 +4,10 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const mainRoutes = require('./routes/index');
-const admin = require('firebase-admin');
 
 dotenv.config();
 var app = express();
 const dbUrl = process.env.MONGODB_URI;
-
-admin.initializeApp({
-    credential: admin.credential.applicationDefault(),
-})
 
 mongoose.connect(dbUrl, {
     useCreateIndex: true,
