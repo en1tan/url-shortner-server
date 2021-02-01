@@ -15,7 +15,7 @@ router.post('/new', async (req, res) => {
         await newUrl.save();
         return res.status(201).json({ success: true, data: newUrl.slug });
     } catch (err) {
-        return res.status(500).json({ success: false, msg: `Error occured. Please try again ${err}` });
+        return res.status(500).json({ success: false, msg: `Error occured. Please try again later.` });
     }
 });
 
